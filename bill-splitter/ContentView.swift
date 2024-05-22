@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var checkAmount = 0.0
+    @State private var checkAmount = 0.00
     @State private var tipPercentage = 20
-    @State private var numberOfPeople: Int = 1
+    @State private var numberOfPeople: Int = 2
     @FocusState private var amountIsFocused: Bool
     
-    let tipPercentages = [10, 15, 18, 20, 22, 25, 0]
+    let tipPercentages = [0, 10, 15, 18, 20, 22, 25]
     
     var body: some View {
         NavigationStack {
@@ -37,7 +37,7 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                 }
                 var totalPerPerson: Double {
-                    let peopleCount = Double(numberOfPeople + 2)
+                    let peopleCount = Double(numberOfPeople)
                     let tipSelection = Double(tipPercentage)
                     
                     let tipValue = tipSelection / 100 * checkAmount
@@ -46,11 +46,21 @@ struct ContentView: View {
                     
                     return amountPerPerson
                 }
-                Section("Total Per Person:") {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                var tipValue = Double(tipPercentage) / 100 * checkAmount
+                var grandTotal = tipValue + checkAmount
+                /*Section("Tip Total") {
+                    Text(tipValue, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
-                Section("Subtotal:") {
-                    Text(checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                Section("Grand Total") {
+                    Text(grandTotal, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                }
+                Section("Total Per Person") {
+                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                }*/
+                Section("") {
+                    Text("Tip Total: \(tipValue, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
+                    Text("Grand Total: \(grandTotal, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
+                    Text("Total Per Person: \(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
                 }
             }
             .navigationTitle("Bill Splitter")
