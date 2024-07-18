@@ -46,8 +46,8 @@ struct ContentView: View {
                     
                     return amountPerPerson
                 }
-                var tipValue = Double(tipPercentage) / 100 * checkAmount
-                var grandTotal = tipValue + checkAmount
+                let tipValue = Double(tipPercentage) / 100 * checkAmount
+                let grandTotal = tipValue + checkAmount
                 /*Section("Tip Total") {
                     Text(tipValue, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
@@ -61,6 +61,9 @@ struct ContentView: View {
                     Text("Tip Total: \(tipValue, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
                     Text("Grand Total: \(grandTotal, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
                     Text("Total Per Person: \(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
+                }
+                Section("") {
+                    ShareLink(item: "Tip Total: \(tipValue.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nGrand Total: \(grandTotal.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nTotal Per Person: \(totalPerPerson.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))")
                 }
             }
             .navigationTitle("Bill Splitter")
