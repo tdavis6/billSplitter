@@ -63,7 +63,7 @@ struct ContentView: View {
                     Text("Total Per Person: \(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
                 }
                 Section("") {
-                    ShareLink(item: "Tip Total: \(tipValue.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nGrand Total: \(grandTotal.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nTotal Per Person: \(totalPerPerson.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))")
+                    ShareLink("Share results",item: "Tip Total: \(tipValue.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nGrand Total: \(grandTotal.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))\nTotal Per Person: \(totalPerPerson.formatted(.currency(code: Locale.current.currency?.identifier ?? "USD")))")
                 }
             }
             .navigationTitle("Bill Splitter")
